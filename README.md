@@ -11,3 +11,10 @@ A docker image with a prepared Postgres database and [osm2pgsql](https://github.
 | postgresql | 10      |
 | postgis    | 2.5     |
 | osm2pgsql  | 0.94    |
+
+
+## Create database example
+
+```
+docker exec your_container /bin/bash -c "psql --command \"CREATE USER osm WITH SUPERUSER PASSWORD 'osm';\" && createdb -E UTF8 -O osm gis && psql -d gis -c \"CREATE EXTENSION postgis;\"  && psql -d gis -c \"CREATE EXTENSION hstore;\""
+```
